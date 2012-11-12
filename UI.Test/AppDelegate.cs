@@ -30,7 +30,6 @@ namespace UI.Test
 			
             viewController = new TestController();
             window.RootViewController = viewController;
-
             window.MakeKeyAndVisible();         
 			
             return true;

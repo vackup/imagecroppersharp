@@ -1,4 +1,4 @@
-﻿using ImageCropperSharp;
+using ImageCropperSharp;
 
 namespace UI.Test
 {
@@ -15,7 +15,7 @@ namespace UI.Test
         {
             base.LoadView();
 
-            this.imageView = new UIImageView(UIImage.FromFile(@"Images/SteveJobsMacbookAir.JPG"))
+            this.imageView = new UIImageView(UIImage.FromFile(@"Images/1.jpg"))
                 {
                     Frame = new RectangleF(80.0f, 20.0f, 160.0f, 230.0f), 
                     ContentMode = UIViewContentMode.ScaleAspectFit 
@@ -34,7 +34,7 @@ namespace UI.Test
 
         private void CropImage()
         {
-            var cropper = new ImageCropper(this.imageView.Image) { Delegate = this };
+            var cropper = new ImageCropperViewController(this.imageView.Image) { Delegate = this };
 
             this.PresentViewController(cropper, true, null);
 
@@ -44,7 +44,7 @@ namespace UI.Test
 
         #region Implementation of IImageCropperDelegate
 
-        public void DidFinishCroppingWithImage(ImageCropper cropper, UIImage image)
+        public void DidFinishCroppingWithImage(ImageCropperViewController cropper, UIImage image)
         {
             this.imageView.Image = image;
 
@@ -54,7 +54,7 @@ namespace UI.Test
         }
 
 
-        public void DidCancel(ImageCropper cropper)
+        public void DidCancel(ImageCropperViewController cropper)
         {
             this.DismissViewController(true, null);
 

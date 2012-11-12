@@ -4,8 +4,8 @@ namespace ImageCropperSharp
 
     public interface IImageCropperDelegate
     {
-        void DidFinishCroppingWithImage(ImageCropper cropper, UIImage image);
+        void DidFinishCroppingWithImage(ImageCropperViewController cropper, UIImage image);
 
-        void DidCancel(ImageCropper cropper);
+        void DidCancel(ImageCropperViewController cropper);
     }
 }

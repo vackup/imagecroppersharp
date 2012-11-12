@@ -40,6 +40,6 @@
   <ItemGroup>
     <Compile Include="CustomUIScrollViewDelegate.cs" />
     <Compile Include="IImageCropperDelegate.cs" />
-    <Compile Include="ImageCropper.cs" />
+    <Compile Include="ImageCropperViewController.cs" />
   </ItemGroup>
 </Project>

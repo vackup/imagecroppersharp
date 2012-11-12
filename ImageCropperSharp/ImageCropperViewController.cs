@@ -12,7 +12,7 @@ namespace ImageCropperSharp
     using MonoTouch.ObjCRuntime;
     using MonoTouch.UIKit;
 
-    public class ImageCropper : UIViewController
+    public class ImageCropperViewController : UIViewController
     {
         public UIScrollView ScrollView { get; set; }
 
@@ -20,7 +20,7 @@ namespace ImageCropperSharp
 
         public IImageCropperDelegate Delegate { get; set; }
 
-        public ImageCropper(UIImage image)
+        public ImageCropperViewController(UIImage image)
             : base()
         {
             UIApplication.SharedApplication.SetStatusBarStyle(UIStatusBarStyle.BlackTranslucent, true);
@@ -54,31 +54,16 @@ namespace ImageCropperSharp
 
             var navigationItem = new UINavigationItem(@"Move and Scale");
             
-//                var cancelButton = UIButton.FromType (UIButtonType.Custom);
-//                cancelButton.TouchUpInside += (sender, e) => {
-//                    this.CancelCropping();
-//                };
-//                cancelButton.SetTitle("Cancel", UIControlState.Normal);
-//
-//                var doneButton = UIButton.FromType (UIButtonType.Custom);
-//                doneButton.TouchUpInside += (sender, e) => {
-//                    this.FinishCropping();
-//                };
-//                cancelButton.SetTitle("Done", UIControlState.Highlighted);
+            var cancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
+            cancelButton.Clicked += CancelCropping;
 
-//                navigationItem.LeftBarButtonItem = new UIBarButtonItem(cancelButton);
-//                navigationItem.RightBarButtonItem = new UIBarButtonItem(doneButton);
+            var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done);
+            doneButton.Clicked += FinishCropping;
 
-                var cancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
-                cancelButton.Clicked += CancelCropping;
+            navigationItem.LeftBarButtonItem = cancelButton;
+            navigationItem.RightBarButtonItem = doneButton;
 
-                var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done);
-                doneButton.Clicked += FinishCropping;
-
-                navigationItem.LeftBarButtonItem = cancelButton;
-                navigationItem.RightBarButtonItem = doneButton;
-
-                navigationBar.SetItems(new[] { navigationItem }, true);
+            navigationBar.SetItems(new[] { navigationItem }, true);
 
 
             this.View.AddSubview(navigationBar);
